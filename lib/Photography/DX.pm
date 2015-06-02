@@ -34,44 +34,20 @@ use namespace::clean;
 
 The film speed.  Must be a legal ISO arithmetic value.  Defaults to ISO 100.
 
-Special values 1-6 denote "custom" values.
+Special values 1-8 denote "custom" values.
 
 =cut
 
-my %log = qw(
-  25   15
-  32   16
-  40   17
-  50   18
-  64   19
-  80   20
-  100  21
-  125  22
-  160  23
-  200  24
-  250  25
-  320  26
-  400  27
-  500  28
-  640  29
-  800  30
-  1000 31
-  1250 32
-  1600 33
-  2000 34
-  2500 35
-  3200 36
-  4000 37
-  5000 38
-);
+my %log;
+my %speed;
 
 has speed => (
   is      => 'ro',
   lazy    => 1,
   default => sub { 100 },
   isa     => sub {
-    die "speed must be a legal ISO arithmetic film speed value between 25 and 5000 or 1-6 (indicating custom film speed values)"
-      unless defined $_[0] && (defined $log{$_[0]} || $_[0] =~ /^[1-6]$/);
+    die "speed must be a legal ISO arithmetic film speed value between 25 and 5000 or 1-8 (indicating custom film speed values)"
+      unless defined $_[0] && (defined $log{$_[0]} || $_[0] =~ /^[1-8]$/);
   },
 );
 
@@ -135,7 +111,9 @@ sub is_custom_speed ($self)
   ||     $self->speed == 3
   ||     $self->speed == 4
   ||     $self->speed == 5
-  ||     $self->speed == 6;
+  ||     $self->speed == 6
+  ||     $self->speed == 7
+  ||     $self->speed == 8;
 }
 
 =head2 logarithmic_speed
@@ -168,4 +146,51 @@ In digital photography, DX also refers to Nikon's crop sensor format DSLRs.
 
 =cut
 
+while(<DATA>)
+{
+  if(/([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+/)
+  {
+    $log{$1} = $2;
+    $speed{$1} = $3;
+  }
+  elsif(/([0-9]+)\s+-\s+([0-9]+)\s+/)
+  {
+    $speed{$1} = $2;
+  }
+}
+
 1;
+
+__DATA__
+  25   15   100010
+  32   16   100001
+  40   17   100011
+  50   18   110010
+  64   19   110001
+  80   20   110011
+  100  21   101010
+  125  22   101001
+  160  23   101011
+  200  24   111010
+  250  25   111001
+  320  26   111011
+  400  27   100110
+  500  28   100101
+  640  29   100111
+  800  30   110110
+  1000 31   110101
+  1250 32   110111
+  1600 33   101110
+  2000 34   101101
+  2500 35   101111
+  3200 36   111110
+  4000 37   111101
+  5000 38   111111
+  1    -    100000
+  2    -    110000
+  3    -    101000
+  4    -    111000
+  5    -    100100
+  6    -    110100
+  7    -    101100
+  8    -    111100
