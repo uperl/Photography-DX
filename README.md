@@ -50,6 +50,11 @@ Returns the ISO logarithmic scale speed of the film (also known as DIN).
 
 In digital photography, DX also refers to Nikon's crop sensor format DSLRs.
 
+# SEE ALSO
+
+- [Photography::EV](https://metacpan.org/pod/Photography::EV)
+- [http://en.wikipedia.org/wiki/DX\_encoding](http://en.wikipedia.org/wiki/DX_encoding)
+
 # AUTHOR
 
 Graham Ollis <plicease@cpan.org>

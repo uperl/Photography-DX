@@ -156,6 +156,16 @@ sub logarithmic_speed ($self)
 
 In digital photography, DX also refers to Nikon's crop sensor format DSLRs.
 
+=head1 SEE ALSO
+
+=over 4
+
+=item L<Photography::EV>
+
+=item L<http://en.wikipedia.org/wiki/DX_encoding>
+
+=back
+
 =cut
 
 1;
