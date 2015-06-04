@@ -20,7 +20,7 @@ Encode/decode DX film codes
 
 The film speed.  Must be a legal ISO arithmetic value.  Defaults to ISO 100.
 
-Special values 1-6 denote "custom" values.
+Special values 1-8 denote "custom" values.
 
 ## length
 
