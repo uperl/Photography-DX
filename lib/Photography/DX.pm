@@ -34,6 +34,99 @@ use namespace::clean;
 
 =head1 DESCRIPTION
 
+=head1 CONSTRUCTOR
+
+ my $film = Photography::DX->new;
+
+In addition the attributes documented below you may pass into
+the constructor:
+
+=over 4
+
+=item contacts_row_1
+
+The first row of contacts on the roll of film.  The speed
+will be computed from this value.
+
+=item contacts_row_2
+
+The second row of contacts on the roll of film.  The length
+and tolerance will be computed from this value.
+
+=back
+
+=cut
+
+my %log;
+my %speed;
+
+my %length = (
+  undef => '000',
+  12    => '100',
+  20    => '010',
+  24    => '110',
+  36    => '001',
+  48    => '101',
+  60    => '011',
+  72    => '111',
+);
+
+my %tolerance = qw(
+  0.5  00
+  1    10
+  2    01
+  3    11
+);
+
+while(<DATA>)
+{
+  if(/^\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+$/)
+  {
+    $log{$1} = $2;
+    $speed{$1} = $3;
+  }
+  elsif(/^\s+([0-9]+)\s+-\s+([0-9]+)\s+$/)
+  {
+    $speed{$1} = $2;
+  }
+}
+
+sub BUILDARGS
+{
+  my $class = shift;
+  if(@_ % 2 == 0)
+  {
+    my %args = @_;
+    
+    if(defined $args{contacts_row_1})
+    {
+      state $speed = { reverse %speed };
+      $args{speed} = $speed->{$args{contacts_row_1}} || die "illegal value for contacts_row_1";
+    }
+    
+    if(defined $args{contacts_row_2})
+    {
+      if($args{contacts_row_2} =~ /^1([01]{3})([01]{2})$/)
+      {
+        state $length    = { reverse %length };
+        state $tolerance = { reverse %tolerance };
+        $args{length}    = $length->{$1};
+        $args{tolerance} = $tolerance->{$2};
+      }
+      else
+      {
+        die "illegal value for contacts_row_2";
+      }
+    }
+    
+    return \%args;
+  }
+  else
+  {
+    die "nope!";
+  }
+}
+
 =head1 ATTRIBUTES
 
 =head2 speed
@@ -43,9 +136,6 @@ The film speed.  Must be a legal ISO arithmetic value between 25 and 5000.  Defa
 Special values 1-8 denote "custom" values.
 
 =cut
-
-my %log;
-my %speed;
 
 has speed => (
   is      => 'ro',
@@ -125,24 +215,6 @@ lack of metal.
 
 =cut
 
-my %length = (
-  undef => '000',
-  12    => '100',
-  20    => '010',
-  24    => '110',
-  36    => '001',
-  48    => '101',
-  60    => '011',
-  72    => '111',
-);
-
-my %tolerance = qw(
-  0.5  00
-  1    10
-  2    01
-  3    11
-);
-
 sub contacts_row_2 ($self)
 {
   return '1' . $length{$self->length} . $tolerance{$self->tolerance};
@@ -196,19 +268,6 @@ In digital photography, DX also refers to Nikon's crop sensor format DSLRs.
 
 =cut
 
-while(<DATA>)
-{
-  if(/^\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+$/)
-  {
-    $log{$1} = $2;
-    $speed{$1} = $3;
-  }
-  elsif(/^\s+([0-9]+)\s+-\s+([0-9]+)\s+$/)
-  {
-    $speed{$1} = $2;
-  }
-}
-
 1;
 
 __DATA__
@@ -237,6 +296,8 @@ __DATA__
   3200 36   111110
   4000 37   111101
   5000 38   111111
+
+# custom    code
   1    -    100000
   2    -    110000
   3    -    101000
@@ -246,7 +307,8 @@ __DATA__
   7    -    101100
   8    -    111100
 
-400 Tmax                  010804 100110:100111
-Provia 100F               005574 101010:100100
-Fujicolor Press 800       105614 110110:100111
-Kodak Professional 100UC  015264 101010:100110
+# name                    barcode contacts
+400 Tmax                  010804  100110:100111
+Provia 100F               005574  101010:100100
+Fujicolor Press 800       105614  110110:100111
+Kodak Professional 100UC  015264  101010:100110

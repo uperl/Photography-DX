@@ -20,6 +20,23 @@ Encode/decode DX film codes
 
 # DESCRIPTION
 
+# CONSTRUCTOR
+
+    my $film = Photography::DX->new;
+
+In addition the attributes documented below you may pass into
+the constructor:
+
+- contacts\_row\_1
+
+    The first row of contacts on the roll of film.  The speed
+    will be computed from this value.
+
+- contacts\_row\_2
+
+    The second row of contacts on the roll of film.  The length
+    and tolerance will be computed from this value.
+
 # ATTRIBUTES
 
 ## speed
