@@ -25,6 +25,12 @@ use namespace::clean;
    length    => 36,
    tolerance => 2,
  );
+ 
+ # print out the layout of contacts
+ # on the roll of film as a series
+ # of 1s and 0s:
+ print $film->contacts_row_1, "\n";
+ print $film->contacts_row_2, "\n";
 
 =head1 DESCRIPTION
 
