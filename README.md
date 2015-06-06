@@ -20,6 +20,11 @@ Encode/decode DX film codes
 
 # DESCRIPTION
 
+This class represents a roll of 35mm film, and allows you to compute the
+DX encoding contacts used by film cameras that automatically detect film
+speed, the number of exposures and the exposure tolerance of the film
+(most cameras actually use only the film speed for the DX encoding).
+
 # CONSTRUCTOR
 
     my $film = Photography::DX->new;
