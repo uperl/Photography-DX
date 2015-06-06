@@ -32,7 +32,7 @@ use namespace::clean;
 
 =head2 speed
 
-The film speed.  Must be a legal ISO arithmetic value.  Defaults to ISO 100.
+The film speed.  Must be a legal ISO arithmetic value between 25 and 5000.  Defaults to ISO 100.
 
 Special values 1-8 denote "custom" values.
 
@@ -91,12 +91,56 @@ has tolerance => (
   lazy    => 1,
   default => sub { 2 },
   isa     => sub {
-    die "tolerance must be one of .5, 1, 2, 3"
+    die "tolerance must be one of 0.5, 1, 2, 3"
       unless (defined $_[0]) && ($_[0] =~ /^(0.5|1|2|3)$/);
   },
 );
 
 =head1 METHODS
+
+=head2 contacts_row_1
+
+Returns the contact layout as a string of 1s and 0s for the first row
+of electrical contacts.  1 represents a metal contact, 0 represents the
+lack of metal.
+
+=cut
+
+sub contacts_row_1 ($self)
+{
+  return $speed{$self->speed};
+}
+
+=head2 contacts_row_2
+
+Returns the contact layout as a string of 1s and 0s for the second row
+of electrical contacts.  1 represents a metal contact, 0 represents the
+lack of metal.
+
+=cut
+
+my %length = (
+  undef => '000',
+  12    => '100',
+  20    => '010',
+  24    => '110',
+  36    => '001',
+  48    => '101',
+  60    => '011',
+  72    => '111',
+);
+
+my %tolerance = qw(
+  0.5  00
+  1    10
+  2    01
+  3    11
+);
+
+sub contacts_row_2 ($self)
+{
+  return '1' . $length{$self->length} . $tolerance{$self->tolerance};
+}
 
 =head2 is_custom_speed
 
@@ -148,12 +192,12 @@ In digital photography, DX also refers to Nikon's crop sensor format DSLRs.
 
 while(<DATA>)
 {
-  if(/([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+/)
+  if(/^\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)\s+$/)
   {
     $log{$1} = $2;
     $speed{$1} = $3;
   }
-  elsif(/([0-9]+)\s+-\s+([0-9]+)\s+/)
+  elsif(/^\s+([0-9]+)\s+-\s+([0-9]+)\s+$/)
   {
     $speed{$1} = $2;
   }
@@ -162,6 +206,7 @@ while(<DATA>)
 1;
 
 __DATA__
+# ISO  DIN  code
   25   15   100010
   32   16   100001
   40   17   100011
@@ -194,3 +239,8 @@ __DATA__
   6    -    110100
   7    -    101100
   8    -    111100
+
+400 Tmax                  010804 100110:100111
+Provia 100F               005574 101010:100100
+Fujicolor Press 800       105614 110110:100111
+Kodak Professional 100UC  015264 101010:100110

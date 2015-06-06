@@ -18,7 +18,7 @@ Encode/decode DX film codes
 
 ## speed
 
-The film speed.  Must be a legal ISO arithmetic value.  Defaults to ISO 100.
+The film speed.  Must be a legal ISO arithmetic value between 25 and 5000.  Defaults to ISO 100.
 
 Special values 1-8 denote "custom" values.
 
@@ -37,6 +37,18 @@ The exposure latitude of the film.  Must be one of:
 - 2 for +3 to -1 stops
 
 # METHODS
+
+## contacts\_row\_1
+
+Returns the contact layout as a string of 1s and 0s for the first row
+of electrical contacts.  1 represents a metal contact, 0 represents the
+lack of metal.
+
+## contacts\_row\_2
+
+Returns the contact layout as a string of 1s and 0s for the second row
+of electrical contacts.  1 represents a metal contact, 0 represents the
+lack of metal.
 
 ## is\_custom\_speed
 

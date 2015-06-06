@@ -7,6 +7,7 @@ pod_spelling_system:
     - DX
     - 32x24mm
     - DSLRs
+    - 1s
 
 pod_coverage:
   skip: 0
