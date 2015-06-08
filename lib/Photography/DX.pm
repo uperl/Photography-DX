@@ -261,6 +261,9 @@ sub logarithmic_speed ($self)
 
 In digital photography, DX also refers to Nikon's crop sensor format DSLRs.
 
+DX encoding was introduced in 1980, well after the development of 35mm film
+and so many types of film do not include DX codes.
+
 =head1 SEE ALSO
 
 =over 4
@@ -312,8 +315,8 @@ __DATA__
   7    -    101100
   8    -    111100
 
-# name                    barcode contacts
-400 Tmax                  010804  100110:100111
-Provia 100F               005574  101010:100100
-Fujicolor Press 800       105614  110110:100111
-Kodak Professional 100UC  015264  101010:100110
+# crop    film                barcode contacts
+Kodak     400 Tmax            010804  100110:100111
+Fujicolor Provia 100F         005574  101010:100100
+Fujicolor Press 800           105614  110110:100111
+Kodak     Professional 100UC  015264  101010:100110
