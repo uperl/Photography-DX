@@ -1,6 +1,4 @@
-Carp
 ExtUtils::MakeMaker
 Moo
 Test::More
-feature
 namespace::clean
