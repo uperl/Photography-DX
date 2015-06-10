@@ -93,6 +93,8 @@ In digital photography, DX also refers to Nikon's crop sensor format DSLRs.
 DX encoding was introduced in 1980, well after the development of 35mm film
 and so many types of film do not include DX codes.
 
+This module uses features in and requires Perl 5.22.
+
 # SEE ALSO
 
 - [Photography::EV](https://metacpan.org/pod/Photography::EV)
