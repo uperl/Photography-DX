@@ -106,7 +106,10 @@ sub BUILDARGS
     if(defined $args{contacts_row_1})
     {
       state $speed = { reverse %speed };
-      $args{speed} = $speed->{$args{contacts_row_1}} || die "illegal value for contacts_row_1";
+      for \my %speed ($speed)
+      {
+        $args{speed} = $speed{$args{contacts_row_1}} || die "illegal value for contacts_row_1";
+      }
     }
     
     if(defined $args{contacts_row_2})
@@ -115,8 +118,14 @@ sub BUILDARGS
       {
         state $length    = { reverse %length };
         state $tolerance = { reverse %tolerance };
-        $args{length}    = $length->{$1};
-        $args{tolerance} = $tolerance->{$2};
+        for \my %length ($length) 
+        {
+          for \my %tolerance ($tolerance)
+          {
+            $args{length}    = $length{$1};
+            $args{tolerance} = $tolerance{$2};
+          }
+        }
       }
       else
       {
@@ -233,14 +242,15 @@ Returns true if the film speed is a custom film speed.
 
 sub is_custom_speed ($self)
 {
-  return $self->speed == 1
-  ||     $self->speed == 2
-  ||     $self->speed == 3
-  ||     $self->speed == 4
-  ||     $self->speed == 5
-  ||     $self->speed == 6
-  ||     $self->speed == 7
-  ||     $self->speed == 8;
+  my $speed = $self->speed;
+  return $speed == 1
+  ||     $speed == 2
+  ||     $speed == 3
+  ||     $speed == 4
+  ||     $speed == 5
+  ||     $speed == 6
+  ||     $speed == 7
+  ||     $speed == 8;
 }
 
 =head2 logarithmic_speed
