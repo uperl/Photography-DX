@@ -190,7 +190,7 @@ The exposure latitude of the film.  Must be one of:
 
 =item 2 for +2 to -1 stops
 
-=item 2 for +3 to -1 stops
+=item 3 for +3 to -1 stops
 
 =back
 

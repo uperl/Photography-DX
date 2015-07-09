@@ -62,7 +62,7 @@ The exposure latitude of the film.  Must be one of:
 - 0.5 for ±0.5 stop
 - 1 for ±1 stop
 - 2 for +2 to -1 stops
-- 2 for +3 to -1 stops
+- 3 for +3 to -1 stops
 
 # METHODS
 
