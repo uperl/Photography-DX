@@ -12,6 +12,7 @@ install:
 
 perl:
   - "5.22"
+  - "5.23.1"
 
 script:
   - dzil test -v
