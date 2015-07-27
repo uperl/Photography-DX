@@ -3,12 +3,8 @@ package Photography::DX;
 use 5.022;
 use Carp qw( croak );
 use Moo 2.0;
-
-use feature 'signatures';
-no warnings 'experimental::signatures';
-use feature 'refaliasing';
-no warnings 'experimental::refaliasing';
-
+use experimental 'signatures';
+use experimental 'refaliasing';
 use namespace::clean;
 
 # ABSTRACT: Encode/decode DX film codes
