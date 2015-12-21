@@ -1,4 +1,4 @@
-# Photography::DX
+# Photography::DX [![Build Status](https://secure.travis-ci.org/plicease/Photography-DX.png)](http://travis-ci.org/plicease/Photography-DX)
 
 Encode/decode DX film codes
 
