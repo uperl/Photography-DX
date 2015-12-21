@@ -1,4 +1,0 @@
-ExtUtils::MakeMaker
-Moo
-Test::More
-namespace::clean
