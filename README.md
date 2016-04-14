@@ -102,7 +102,7 @@ This module uses features in and requires Perl 5.22.
 
 # AUTHOR
 
-Graham Ollis &lt;plicease@cpan.org>
+Graham Ollis <plicease@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
