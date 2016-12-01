@@ -204,6 +204,19 @@ has tolerance => (
 
 =head1 METHODS
 
+=head2 contacts
+
+ my($row1, $row2) = $film->contacts;
+
+Returns both rows of contacts.
+
+=cut
+
+sub contacts ($self)
+{
+  return ($self->contacts_row_1, $self->contacts_row_2);
+}
+
 =head2 contacts_row_1
 
 Returns the contact layout as a string of 1s and 0s for the first row

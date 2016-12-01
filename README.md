@@ -66,6 +66,12 @@ The exposure latitude of the film.  Must be one of:
 
 # METHODS
 
+## contacts
+
+    my($row1, $row2) = $film->contacts;
+
+Returns both rows of contacts.
+
 ## contacts\_row\_1
 
 Returns the contact layout as a string of 1s and 0s for the first row
