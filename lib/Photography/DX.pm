@@ -98,7 +98,7 @@ sub BUILDARGS
   if(@_ % 2 == 0)
   {
     my %args = @_;
-    
+
     if(defined $args{contacts_row_1})
     {
       state $speed = { reverse %speed };
@@ -107,14 +107,14 @@ sub BUILDARGS
         $args{speed} = $speed{$args{contacts_row_1}} || die "illegal value for contacts_row_1";
       }
     }
-    
+
     if(defined $args{contacts_row_2})
     {
       if($args{contacts_row_2} =~ /^1([01]{3})([01]{2})$/)
       {
         state $length    = { reverse %length };
         state $tolerance = { reverse %tolerance };
-        for \my %length ($length) 
+        for \my %length ($length)
         {
           for \my %tolerance ($tolerance)
           {
@@ -128,7 +128,7 @@ sub BUILDARGS
         die "illegal value for contacts_row_2";
       }
     }
-    
+
     return \%args;
   }
   else
