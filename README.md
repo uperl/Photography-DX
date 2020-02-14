@@ -1,4 +1,4 @@
-# Photography::DX [![Build Status](https://secure.travis-ci.org/plicease/Photography-DX.png)](http://travis-ci.org/plicease/Photography-DX)
+# Photography::DX [![Build Status](https://secure.travis-ci.org/plicease/Photography-DX.png)](http://travis-ci.org/plicease/Photography-DX) ![windows](https://github.com/plicease/Photography-DX/workflows/windows/badge.svg) ![macos](https://github.com/plicease/Photography-DX/workflows/macos/badge.svg)
 
 Encode/decode DX film codes
 
