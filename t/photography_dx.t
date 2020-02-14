@@ -1,11 +1,9 @@
 use strict;
 use warnings;
-use Test::More tests => 5;
+use Test::More;
 use Photography::DX;
 
 subtest speed => sub {
-  plan tests => 10;
-
   my $film = Photography::DX->new;
   is $film->speed, 100, 'Default film speed is ISO 100';
   ok !$film->is_custom_speed, 'film is not custom';
@@ -30,8 +28,6 @@ subtest speed => sub {
 };
 
 subtest length => sub {
-  plan tests => 5;
-
   my $film = Photography::DX->new;
   is $film->length, undef, 'length is undef by default';
 
@@ -51,8 +47,6 @@ subtest length => sub {
 };
 
 subtest tolerance => sub {
-  plan tests => 4;
-
   my $film = Photography::DX->new;
   is $film->tolerance, 2, 'tolerance is 2 by default';
 
@@ -69,8 +63,6 @@ subtest tolerance => sub {
 };
 
 subtest 'contacts 1' => sub {
-  plan tests => 4;
-
   is(Photography::DX->new(speed => 400)->contacts_row_1, '100110', 'okay for speed 400');
   is(Photography::DX->new(speed => 5)->contacts_row_1,   '100100', 'okay for custom 5');
 
@@ -79,8 +71,6 @@ subtest 'contacts 1' => sub {
 };
 
 subtest 'contacts 2' => sub {
-  plan tests => 6;
-
   is(Photography::DX->new(length => 24, tolerance => 0.5)->contacts_row_2, '111000', 'okay for length 24 tolerance 0.5');
   is(Photography::DX->new(length => 36, tolerance => 3.0)->contacts_row_2, '100111', 'okay for length 36 tolerance 3  ');
 
@@ -92,3 +82,5 @@ subtest 'contacts 2' => sub {
   is $film2->length,    36, 'okay length 36 (reverse)';
   is $film2->tolerance, 3,  'okay tolerance 3 (reverse)';
 };
+
+done_testing;
