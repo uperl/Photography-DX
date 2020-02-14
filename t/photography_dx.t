@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 3;
+use Test::More tests => 5;
 use Photography::DX;
 
 subtest speed => sub {
@@ -66,4 +66,29 @@ subtest tolerance => sub {
   my $error = $@;
   like "$error", qr/tolerance must be one of/, 'bad film speed throws exception';
   note "error=$error";
+};
+
+subtest 'contacts 1' => sub {
+  plan tests => 4;
+
+  is(Photography::DX->new(speed => 400)->contacts_row_1, '100110', 'okay for speed 400');
+  is(Photography::DX->new(speed => 5)->contacts_row_1,   '100100', 'okay for custom 5');
+
+  is(Photography::DX->new(contacts_row_1 => '100110')->speed, 400, 'okay for speed 400 (reverse)');
+  is(Photography::DX->new(contacts_row_1 => '100100')->speed, 5,   'okay for custom 5 (reverse)');
+};
+
+subtest 'contacts 2' => sub {
+  plan tests => 6;
+
+  is(Photography::DX->new(length => 24, tolerance => 0.5)->contacts_row_2, '111000', 'okay for length 24 tolerance 0.5');
+  is(Photography::DX->new(length => 36, tolerance => 3.0)->contacts_row_2, '100111', 'okay for length 36 tolerance 3  ');
+
+  my $film1 = Photography::DX->new(contacts_row_2 => '111000');
+  is $film1->length,     24, 'okay length 24 (reverse)';
+  is $film1->tolerance, 0.5, 'okay tolerance 0.5 (reverse)';
+
+  my $film2 = Photography::DX->new(contacts_row_2 => '100111');
+  is $film2->length,    36, 'okay length 36 (reverse)';
+  is $film2->tolerance, 3,  'okay tolerance 3 (reverse)';
 };
