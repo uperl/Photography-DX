@@ -10,7 +10,7 @@ subtest speed => sub {
   is $film->speed, 100, 'Default film speed is ISO 100';
   ok !$film->is_custom_speed, 'film is not custom';
   is $film->logarithmic_speed, 21, 'log film speed 21';
-  
+
   $film = Photography::DX->new(speed => 200);
   is $film->speed, 200, 'set non default film speed';
   ok !$film->is_custom_speed, 'film is not custom';
@@ -34,7 +34,7 @@ subtest length => sub {
 
   my $film = Photography::DX->new;
   is $film->length, undef, 'length is undef by default';
-  
+
   $film = Photography::DX->new(length => undef);
   is $film->length, undef, 'length assign to undef okay';
 
@@ -55,7 +55,7 @@ subtest tolerance => sub {
 
   my $film = Photography::DX->new;
   is $film->tolerance, 2, 'tolerance is 2 by default';
-  
+
   $film = Photography::DX->new(tolerance => 0.5);
   is $film->tolerance, 0.5, 'tolerance 0.5 okay';
 
