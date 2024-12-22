@@ -1,2 +1,4 @@
 /Photography-DX-*
 /.build
+*.old
+*.orig
