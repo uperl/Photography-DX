@@ -1,4 +1,4 @@
-# Photography::DX ![linux](https://github.com/uperl/Photography-DX/workflows/linux/badge.svg) ![macos](https://github.com/uperl/Photography-DX/workflows/macos/badge.svg) ![windows](https://github.com/uperl/Photography-DX/workflows/windows/badge.svg) ![cygwin](https://github.com/uperl/Photography-DX/workflows/cygwin/badge.svg) ![msys2-mingw](https://github.com/uperl/Photography-DX/workflows/msys2-mingw/badge.svg)
+# Photography::DX ![linux](https://github.com/uperl/Photography-DX/workflows/linux/badge.svg) ![macos](https://github.com/uperl/Photography-DX/workflows/macos/badge.svg) ![windows](https://github.com/uperl/Photography-DX/workflows/windows/badge.svg) ![msys2-mingw](https://github.com/uperl/Photography-DX/workflows/msys2-mingw/badge.svg)
 
 Encode/decode DX film codes
 
@@ -118,7 +118,7 @@ Graham Ollis <plicease@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2015 by Graham Ollis.
+This software is copyright (c) 2015-2024 by Graham Ollis.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
