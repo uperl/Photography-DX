@@ -1,4 +1,4 @@
-# Photography::DX ![linux](https://github.com/uperl/Photography-DX/workflows/linux/badge.svg) ![macos](https://github.com/uperl/Photography-DX/workflows/macos/badge.svg) ![windows](https://github.com/uperl/Photography-DX/workflows/windows/badge.svg) ![msys2-mingw](https://github.com/uperl/Photography-DX/workflows/msys2-mingw/badge.svg)
+# Photography::DX ![linux](https://github.com/uperl/Photography-DX/workflows/linux/badge.svg) ![macos](https://github.com/uperl/Photography-DX/workflows/macos/badge.svg) ![windows](https://github.com/uperl/Photography-DX/workflows/windows/badge.svg)
 
 Encode/decode DX film codes
 
